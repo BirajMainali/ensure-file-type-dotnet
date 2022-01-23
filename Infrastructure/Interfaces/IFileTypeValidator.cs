@@ -6,4 +6,5 @@ public interface IFileTypeValidator
     bool IsVideo(string fileName);
     bool IsAudio(string fileName);
     bool IsDocument(string fileName);
+    bool IsFile(string fileName);
 }

@@ -48,4 +48,15 @@ public class FileTypeValidator : IFileTypeValidator
 
         return (contentType.StartsWith("text") || contentType.Contains("document") || contentType.Contains("pdf"));
     }
+
+    public bool IsFile(string fileName)
+    {
+        var provider = new FileExtensionContentTypeProvider();
+        if (!provider.TryGetContentType(fileName, out var contentType))
+        {
+            contentType = "application/octet-stream";
+        }
+
+        return (contentType.StartsWith("text") || contentType.StartsWith("video") || contentType.StartsWith("image") || contentType.StartsWith("audio") || contentType.Contains("document") || contentType.Contains("pdf"));
+    }
 }

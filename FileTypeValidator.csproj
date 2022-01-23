@@ -4,6 +4,15 @@
         <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <AnalysisLevel>preview</AnalysisLevel>
+        <Authors>BirajMainali</Authors>
+        <Description>Nuget package to validate files by its content types which is more accurate.FileTypeValidator don't let users to inject you an invalid file! </Description>
+        <Copyright>MIT</Copyright>
+        <RepositoryUrl>https://github.com/BirajMainali/FileTypeValidator.git</RepositoryUrl>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageTags>File validator ,Mime validator ,contact type validator, file type validator</PackageTags>
+        <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+        <Product>FileTypeValidator</Product>
     </PropertyGroup>
 
     <ItemGroup>
@@ -15,6 +24,13 @@
       <Reference Include="Microsoft.AspNetCore.StaticFiles, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60">
         <HintPath>C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\6.0.1\Microsoft.AspNetCore.StaticFiles.dll</HintPath>
       </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="README.md">
+        <Pack>True</Pack>
+        <PackagePath>\</PackagePath>
+      </None>
     </ItemGroup>
 
 </Project>
