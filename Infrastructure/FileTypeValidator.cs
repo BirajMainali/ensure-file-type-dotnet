@@ -1,62 +1,49 @@
 ﻿using FileTypeValidator.Infrastructure.Interfaces;
-using Microsoft.AspNetCore.StaticFiles;
 
 namespace FileTypeValidator.Infrastructure;
 
 public class FileTypeValidator : IFileTypeValidator
 {
+    private readonly IFileContentProvider _contentProvider;
+
+    public FileTypeValidator(IFileContentProvider contentProvider)
+    {
+        _contentProvider = contentProvider;
+    }
     public bool IsImage(string fileName)
     {
-        var provider = new FileExtensionContentTypeProvider();
-        if (!provider.TryGetContentType(fileName, out var contentType))
-        {
-            contentType = "application/octet-stream";
-        }
-
-        return contentType.StartsWith("image");
+        var contentType = _contentProvider.GetContentType(fileName);
+        return contentType.StartsWith(FileTypes.Image);
     }
-
+    
     public bool IsVideo(string fileName)
     {
-        var provider = new FileExtensionContentTypeProvider();
-        if (!provider.TryGetContentType(fileName, out var contentType))
-        {
-            contentType = "application/octet-stream";
-        }
-
-        return contentType.StartsWith("video");
+        var contentType =  _contentProvider.GetContentType(fileName);
+        return contentType.StartsWith(FileTypes.Video);
     }
 
     public bool IsAudio(string fileName)
     {
-        var provider = new FileExtensionContentTypeProvider();
-        if (!provider.TryGetContentType(fileName, out var contentType))
-        {
-            contentType = "application/octet-stream";
-        }
-
-        return contentType.StartsWith("audio");
+        var contentType =  _contentProvider.GetContentType(fileName);
+        return contentType.StartsWith(FileTypes.Audio);
     }
 
     public bool IsDocument(string fileName)
     {
-        var provider = new FileExtensionContentTypeProvider();
-        if (!provider.TryGetContentType(fileName, out var contentType))
-        {
-            contentType = "application/octet-stream";
-        }
-
-        return (contentType.StartsWith("text") || contentType.Contains("document") || contentType.Contains("pdf"));
+        var contentType =  _contentProvider.GetContentType(fileName);
+        return (contentType.StartsWith(FileTypes.Text) ||
+                contentType.Contains(FileTypes.Document) ||
+                contentType.Contains(FileTypes.Pdf));
     }
 
     public bool IsFile(string fileName)
     {
-        var provider = new FileExtensionContentTypeProvider();
-        if (!provider.TryGetContentType(fileName, out var contentType))
-        {
-            contentType = "application/octet-stream";
-        }
-
-        return (contentType.StartsWith("text") || contentType.StartsWith("video") || contentType.StartsWith("image") || contentType.StartsWith("audio") || contentType.Contains("document") || contentType.Contains("pdf"));
+        var contentType =  _contentProvider.GetContentType(fileName);
+        return (contentType.StartsWith(FileTypes.Text) ||
+                contentType.StartsWith(FileTypes.Video) ||
+                contentType.StartsWith(FileTypes.Image) ||
+                contentType.StartsWith(FileTypes.Audio) ||
+                contentType.Contains(FileTypes.Document) ||
+                contentType.Contains(FileTypes.Pdf));
     }
 }

@@ -8,6 +8,7 @@ public static class DiConfig
     public static IServiceCollection UseFileTypeValidator(this IServiceCollection services)
     {
         services.AddScoped<IFileTypeValidator, Infrastructure.FileTypeValidator>();
+        services.AddScoped<IFileContentProvider, Infrastructure.FileContentProvider>();
         return services;
     }
 }
