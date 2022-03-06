@@ -37,4 +37,4 @@ Dependency injection
             throw new Exception("Invalid file for audio");
         }
 ```
-Avliable methods to validate file content are `IsImage`,`IsVideo`,`IsAudio`,`IsDocument` and `IsFile`. 
+Available methods to validate file content are `IsImage`,`IsVideo`,`IsAudio`,`IsDocument` and `IsFile`. 
